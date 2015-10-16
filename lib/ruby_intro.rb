@@ -33,15 +33,24 @@ end
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  "Hello, " << name
 end
 
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  cons = /[^aeiou]/
+  
+  
+  return false if (/[\W]/.match(s[0]) != nil || s.length == 0)
+  
+  return true if cons.match(s[0].downcase) != nil
+  
 end
 
 def binary_multiple_of_4? s
-  # YOUR CODE HERE
+  # rejects strings that contain anything except 1 and 0
+  return false if (/[^10]/.match(s) != nil || s.length == 0)
+  
+  return true if (s.to_i(2) % 4 == 0)
 end
 
 # Part 3
