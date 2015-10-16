@@ -56,5 +56,31 @@ end
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  attr_accessor :price
+  
+  def initialize(isbn, price)
+    if isbn.length == 0 || price <= 0
+      raise ArgumentError
+    end
+    
+    @isbn = parseIsbn(isbn)
+    @price = price.to_f
+  end
+  
+  def price_as_string
+    return "$#{'%.2f' % @price}"
+  end
+  
+  def isbn
+    "isbn#{@isbn}"
+  end
+  
+  def isbn=(setIsbn)
+    @isbn = parseIsbn(setIsbn)
+  end
+  
+  private
+  def parseIsbn stringIsbn
+    stringIsbn.scan(/\d+/).join("").to_i
+  end
 end
