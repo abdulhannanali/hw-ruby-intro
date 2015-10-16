@@ -39,7 +39,7 @@ end
 def starts_with_consonant? s
   cons = /[^aeiou]/
   
-  
+  # if the string starts with non letter or it's length is 0 return false
   return false if (/[\W]/.match(s[0]) != nil || s.length == 0)
   
   return true if cons.match(s[0].downcase) != nil
@@ -58,6 +58,19 @@ end
 class BookInStock
   attr_accessor :price
   
+  # getter and setter for the isb are not the default ones
+  
+  # attr_reader for isbn
+  def isbn
+    "isbn#{@isbn}"
+  end
+  
+  # attr_writer for isbn
+  def isbn=(setIsbn)
+    @isbn = parseIsbn(setIsbn)
+  end
+  
+  
   def initialize(isbn, price)
     if isbn.length == 0 || price <= 0
       raise ArgumentError
@@ -71,13 +84,6 @@ class BookInStock
     return "$#{'%.2f' % @price}"
   end
   
-  def isbn
-    "isbn#{@isbn}"
-  end
-  
-  def isbn=(setIsbn)
-    @isbn = parseIsbn(setIsbn)
-  end
   
   private
   def parseIsbn stringIsbn
